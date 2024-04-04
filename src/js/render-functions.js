@@ -7,11 +7,11 @@ const lightbox = new SimpleLightbox('.gallery a', {
 });
 
 export function renderGalleryImg(parentEl, data) {
-  parentEl.innerHTML = generateMarkup(data);
+  parentEl.innerHTML = generateGalleryMarkup(data);
   lightbox.refresh();
 }
 
-function generateMarkup(data) {
+function generateGalleryMarkup(data) {
   return data
     .map(
       ({

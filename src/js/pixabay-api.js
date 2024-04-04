@@ -1,5 +1,5 @@
 export function getDataFromAPI(baseUrl, apiKey, inputValue) {
-  const fullUrl = buildFullUrl(baseUrl, apiKey, inputValue);
+  const fullUrl = constructUrl(baseUrl, apiKey, inputValue);
   return fetch(fullUrl)
     .then(response => {
       if (!response.ok) {
@@ -13,9 +13,9 @@ export function getDataFromAPI(baseUrl, apiKey, inputValue) {
     });
 }
 
-function buildFullUrl(baseUrl, apiKey, inputValue) {
+function constructUrl(baseUrl, userKey, inputValue) {
   const searchParams = new URLSearchParams({
-    key: apiKey,
+    key: userKey,
     q: inputValue,
     image_type: 'photo',
     orientation: 'horizontal',

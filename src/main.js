@@ -1,3 +1,6 @@
+import { getDataFromAPI } from './js/pixabay-api';
+import { renderGalleryImg } from './js/render-functions';
+
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -6,27 +9,27 @@ import iconError from './img/icon-error.svg';
 const apiKey = '43227230-2cc9b082dfeccb819f6787c2c';
 const baseUrl = 'https://pixabay.com/api/';
 
-const searchFormEl = document.querySelector('.search-form');
-const imageGalleryEl = document.querySelector('.gallery');
-const loaderWrapperEl = document.querySelector('.loader-wrapper ');
+const searchForm = document.querySelector('.search-form');
+const galleryEl = document.querySelector('.gallery');
+const loaderWrapper = document.querySelector('.loader-wrapper ');
 
-searchFormEl.addEventListener('submit', onSearchFormSubmit);
+searchForm.addEventListener('submit', handleFormSubmit);
 
-function onSearchFormSubmit(e) {
+function handleFormSubmit(e) {
   e.preventDefault();
-  imageGalleryEl.innerHTML = '';
-  loaderWrapperEl.classList.remove('is-hidden');
+  galleryEl.innerHTML = '';
+  loaderWrapper.classList.remove('is-hidden');
 
-  const inputValue = e.currentTarget.search.value.trim();
+  const inputSearchValue = e.currentTarget.search.value.trim();
 
-  if (!inputValue) {
+  if (!inputSearchValue) {
     displayErrorMessage('Please enter a value in the field!', 'Error');
     e.currentTarget.reset();
-    loaderWrapperEl.classList.add('is-hidden');
+    loaderWrapper.classList.add('is-hidden');
     return;
   }
 
-  getDataFromAPI(baseUrl, apiKey, inputValue)
+  getDataFromAPI(baseUrl, apiKey, inputSearchValue)
     .then(data => {
       const formData = data.hits;
       if (formData.length === 0) {
@@ -34,12 +37,12 @@ function onSearchFormSubmit(e) {
           'Sorry, there are no images matching your search query. Please try again!'
         );
 
-        loaderWrapperEl.classList.add('is-hidden');
+        loaderWrapper.classList.add('is-hidden');
         return;
       }
 
-      renderGalleryImg(imageGalleryEl, formData);
-      loaderWrapperEl.classList.add('is-hidden');
+      renderGalleryImg(galleryEl, formData);
+      loaderWrapper.classList.add('is-hidden');
     })
     .catch(error => {
       displayErrorMessage(
