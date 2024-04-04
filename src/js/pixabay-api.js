@@ -13,9 +13,9 @@ export function getDataFromAPI(baseUrl, apiKey, inputValue) {
     });
 }
 
-function constructUrl(baseUrl, userKey, inputValue) {
+function constructUrl(baseUrl, apiKey, inputValue) {
   const searchParams = new URLSearchParams({
-    key: userKey,
+    key: apiKey,
     q: inputValue,
     image_type: 'photo',
     orientation: 'horizontal',
