@@ -9,8 +9,8 @@ import iconError from './img/icon-error.svg';
 const apiKey = '43227230-2cc9b082dfeccb819f6787c2c';
 const baseUrl = 'https://pixabay.com/api/';
 
-const searchFormEl = document.querySelector('.search-form');
-const imageGalleryEl = document.querySelector('.gallery');
+const searchFormEl = document.querySelector('.search-box');
+const imageGalleryEl = document.querySelector('.main-gallery');
 const loaderWrapperEl = document.querySelector('.loader-wrapper ');
 
 searchFormEl.addEventListener('submit', onSearchFormSubmit);
