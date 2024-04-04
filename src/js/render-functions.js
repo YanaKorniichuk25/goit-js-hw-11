@@ -1,7 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const lightbox = new SimpleLightbox('.main-gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -23,12 +23,12 @@ function generateMarkup(data) {
         comments,
         downloads,
       }) =>
-        ` <li class="gallery-item-container">
+        ` <li class="gallery-item">
       <a class="gallery-link" href="${largeImageURL}">
         <figure class="gallery-figure">
           <img class="gallery-image" src="${webformatURL}" alt="${tags}" width="360" />
           <figcaption class="gallery-figcaption">
-            <ul class="gallery-info">
+            <ul class="gallery-text">
               <li>
                 <span>Likes</span>
                 <p>${likes}</p>
